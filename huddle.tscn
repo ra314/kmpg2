@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dquqdejm2hi7s"]
+
+[ext_resource type="Script" path="res://huddle.gd" id="1_vyyrb"]
+
+[node name="huddle" type="Node"]
+script = ExtResource("1_vyyrb")

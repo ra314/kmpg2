@@ -1,0 +1,1 @@
+A simulation of a dinner party. People walk around until they find someone that they chat to. And sometimes you bump into people who are already in a group and you just nudge your way into the conversation. Eventually the conversation dies out, or it get's awkward and every decides it's time to skedaddle. And a new huddle forms once again.
