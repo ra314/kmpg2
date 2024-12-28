@@ -5,6 +5,7 @@ const PERSON := preload("res://person.tscn")
 const SCREEN_SIZE := Vector2(1920, 1080)
 const MAX_SPEED := 200
 const NON_RAND_SPEED := 100
+const BIG_G = 20000
 var RNG := RandomNumberGenerator.new()
 
 var velocity := Vector2(0,0)
@@ -23,14 +24,20 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var new_position = position + (velocity*delta)
 	if target_location != null:
+		var new_position = position + (velocity*delta)
 		if new_position.distance_to(target_location) < position.distance_to(target_location):
 			position = new_position
 	else:
-		position = new_position
+		position = position + (velocity*delta)
 	if is_out_of_bounds(position):
 		bounce_off_wall()
+
+func apply_gravity_towards_huddle(huddle: Huddle) -> void:
+	var distance = position.distance_to(huddle.center)
+	var mass = len(huddle.person_to_location)
+	var magnitude = BIG_G*(mass/(distance**2))
+	velocity += position.direction_to(huddle.center)*magnitude
 
 func is_out_of_bounds(pos: Vector2) -> bool:
 	return pos.x < 0 or pos.y < 0 or pos.x > SCREEN_SIZE.x or pos.y > SCREEN_SIZE.y
